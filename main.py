@@ -1,16 +1,15 @@
 import extcolors
 import os
 from flask import Flask, render_template, request, redirect, flash
-from rgbtohex import RGBtoHexConverion
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = 'static/upload/images'
+UPLOAD_FOLDER = 'static/images/upload'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 
 def extract_colors(file):
     # Extracting Colors From Image
-    colors, pixel_count = extcolors.extract_from_path(f"static/upload/images/{file}")
+    colors, pixel_count = extcolors.extract_from_path(f"static/images/upload/{file}")
 
     # Making a list of only the rgb codes
     colors_list = []
@@ -19,11 +18,10 @@ def extract_colors(file):
         for _ in range(3):
             lists.append(colors[i][0][_])
         colors_list.append(lists)
-
     # Converting the rgb code to hex coeds
     hex_color_list = []
     for index in range(len(colors_list)):
-        hex_color_list.append(RGBtoHexConverion(colors_list[index][0],
+        hex_color_list.append('#%02x%02x%02x' % (colors_list[index][0],
                                                 colors_list[index][1],
                                                 colors_list[index][2]))
     return hex_color_list
@@ -48,7 +46,7 @@ def home():
 def upload_file():
     if request.method == 'POST':
         # deleting existing files from dir
-        directory = 'static/upload/images'
+        directory = 'static/images/upload'
         for f in os.listdir(directory):
             os.remove(os.path.join(directory, f))
 
