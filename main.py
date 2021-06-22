@@ -21,9 +21,10 @@ def extract_colors(file):
     # Converting the rgb code to hex coeds
     hex_color_list = []
     for index in range(len(colors_list)):
-        hex_color_list.append('#%02x%02x%02x' % (colors_list[index][0],
-                                                colors_list[index][1],
-                                                colors_list[index][2]))
+        r = colors_list[index][0]
+        g = colors_list[index][1]
+        b = colors_list[index][2]
+        hex_color_list.append('#%02x%02x%02x' % (r,g,b))
     return hex_color_list
 
 
