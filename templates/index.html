@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+<body style="background-color: #faffed;">
+<div class="panel panel-default">
+    <div class="panel-heading"><strong>Upload Files</strong></div>
+    <div class="panel-body">
+
+        <!-- Standard Form -->
+        <h4>Select the file you want to extract colors from</h4>
+        <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data" id="js-upload-form">
+            <div class="form-inline">
+                <div class="form-group">
+                    <input type="file" name="file" id="js-upload-files">
+                </div>
+                <button type="submit" value=Upload class="btn btn-sm btn-primary" id="js-upload-submit">Upload Image
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if name %}
+<img class="uploaded-image"
+     style="max-width: 50%; max-length: 50%; margin-top: 2px; margin-bottom: 2px; margin-left: 25%;"
+     src="static/upload/images/{{name}}">
+<div style="padding-bottom: 8rem;">
+{% for color in colors %}
+<div style="width: 100px; margin-top: 2px; margin-bottom:0; margin-left:45%;">
+    {{ color }}:
+</div>
+<div style="background-color:{{ color }}; height: 30px; width: 100px; margin-bottom:0; margin-left:45%;">
+</div>
+{% endfor %}
+</div>
+{% endif %}
+</body>
+
+<footer style="
+    border-top: 1px solid #ddd!important;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0/14%),0 7px 12px -5px rgb(144 164 174/46%);
+    background-color: #ffe6a1;
+    text-align: center;
+    padding: 5px;
+    height: 7rem;
+    margin-top: 20px">
+    <span class="footer-item">
+        Nir G.© 2021 All Rights Reserved.
+    </span>
+</footer>
+</html>
