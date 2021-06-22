@@ -10,8 +10,8 @@
 </head>
 <body style="background-color: #faffed;">
 <div class="panel panel-default">
-    <div class="panel-heading"><strong>Upload Files</strong></div>
-    <div class="panel-body">
+    <div class="panel-heading"><strong><span style="margin-left:45%;">Upload an Image</span></strong></div>
+    <div class="panel-body" style="margin-left:38%;">
 
         <!-- Standard Form -->
         <h4>Select the file you want to extract colors from</h4>
@@ -28,25 +28,28 @@
 </div>
 
 {% if name %}
+<h1 style="margin-left:43%;">Your Image</h1>
 <img class="uploaded-image"
-     style="max-width: 50%; max-length: 50%; margin-top: 2px; margin-bottom: 2px; margin-left: 25%;"
+     style="max-width: 50%; max-length: 50%; margin: 2px 0 20px 25%"
      src="static/images/upload/{{name}}">
-<div style="padding-bottom: 8rem;">
-{% for color in colors %}
-<div style="width: 100px; margin-top: 2px; margin-bottom:0; margin-left:45%;">
-    {{ color }}:
+<div style="border-top: 1px solid #ddd; box-shadow: 0 4px 20px 0 rgb(0 0 0/14%),0 7px 12px -5px rgb(144 164 174/46%);
+            padding: 10px; background-color:#e3edca;">
+    <h1 style="margin-left:42%;">Color Palette</h1>
+    {% for color in colors %}
+    <div style="width: 100px; margin-top: 2px; margin-bottom:0; margin-left:45%;">
+        {{ color }}:
+    </div>
+    <div style="background-color:{{ color }}; height: 30px; width: 100px; margin-bottom:0; margin-left:45%;">
+    </div>
+    {% endfor %}
 </div>
-<div style="background-color:{{ color }}; height: 30px; width: 100px; margin-bottom:0; margin-left:45%;">
-</div>
-{% endfor %}
-</div>
+{% else %}
+<div style="height: 600px;"></div>
 {% endif %}
 </body>
 
 <footer style="
-    border-top: 1px solid #ddd!important;
-    position: fixed;
-    bottom: 0;
+    border-top: 1px solid #ddd;
     width: 100%;
     box-shadow: 0 4px 20px 0 rgb(0 0 0/14%),0 7px 12px -5px rgb(144 164 174/46%);
     background-color: #ffe6a1;
@@ -54,8 +57,8 @@
     padding: 5px;
     height: 7rem;
     margin-top: 20px">
-    <span class="footer-item">
-        Nir G.© 2021 All Rights Reserved.
+    <span style="display:block; margin-top: 20px;">
+        <strong>Nir G.©</strong> 2021 All Rights Reserved.
     </span>
 </footer>
 </html>
