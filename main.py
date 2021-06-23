@@ -25,8 +25,7 @@ def extract_colors(file):
         r = colors_list[index][0]
         g = colors_list[index][1]
         b = colors_list[index][2]
-        hex_color_list.append('#%02x%02x%02x' % (r,g,b))
-
+        hex_color_list.append(('#%02x%02x%02x' % (r,g,b)).upper())
     counter = 0
     hex_color_to_append = []
     hex_color_three_list = []
@@ -42,7 +41,9 @@ def extract_colors(file):
     # if there are leftovers in hex_color_to_append, add them to the list as well:
     if len(hex_color_to_append) > 0:
         hex_color_three_list.append(hex_color_to_append)
-    return hex_color_three_list
+    # for index in hex_color_list:
+    #     print(hex_color_list.index(index))
+    return hex_color_three_list, hex_color_list
 
 
 app = Flask(__name__)
@@ -81,8 +82,10 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            hex_color_list = extract_colors(filename)
-            return render_template("index.html", name=filename, colors=hex_color_list)
+            hex_color_list, hex_color_list_indices = extract_colors(filename)
+
+            return render_template("index.html", name=filename, colors=hex_color_list,
+                                   hex_color_list_indices=hex_color_list_indices)
     else:
         return render_template("index.html")
 
