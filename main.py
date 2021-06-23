@@ -4,7 +4,8 @@ from flask import Flask, render_template, request, redirect, flash
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = 'static/images/upload'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'ras', 'xwd', 'bmp', 'jpe', 'jpg', 'jpeg', 'xpm', 'ief', 'pbm', 'tif', 'gif', 'ppm', 'xbm',
+                      'tiff', 'rgb', 'pgm', 'png', 'pnm', 'webp'}
 
 
 def extract_colors(file):
@@ -25,7 +26,23 @@ def extract_colors(file):
         g = colors_list[index][1]
         b = colors_list[index][2]
         hex_color_list.append('#%02x%02x%02x' % (r,g,b))
-    return hex_color_list
+
+    counter = 0
+    hex_color_to_append = []
+    hex_color_three_list = []
+    # create lists of three cafes inside a big list:
+    for _ in hex_color_list:
+        hex_color_to_append.append(hex_color_list[counter])
+        counter += 1
+        if len(hex_color_to_append) % 3 != 0:
+            continue
+        else:
+            hex_color_three_list.append(hex_color_to_append)
+            hex_color_to_append = []
+    # if there are leftovers in hex_color_to_append, add them to the list as well:
+    if len(hex_color_to_append) > 0:
+        hex_color_three_list.append(hex_color_to_append)
+    return hex_color_three_list
 
 
 app = Flask(__name__)
