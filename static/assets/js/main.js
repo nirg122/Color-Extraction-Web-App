@@ -5,3 +5,4 @@ function copyToClipboard(element) {
   document.execCommand("copy");
   $temp.remove();
 }
+$('#js-upload-files').bind('change', function() { var fileName = ''; fileName = $(this).val(); $('#file-selected').html(fileName); })
