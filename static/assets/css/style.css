@@ -1,3 +1,106 @@
-.row {
-    margin: 0;
+body {
+    background-color: #faffed;
+    font-family: 'Ubuntu', sans-serif;
+}
+h1, h2, h3 {
+    text-align: center;
+}
+
+/* Headline */
+.headline {
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 5rem;
+    font-weight: 800;
+    background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Upload Section  */
+.upload-section {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.upload-container {
+    text-align:center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Image Section  */
+.image-section {
+
+}
+
+.image-section span {
+    text-align: center;
+    background: -webkit-linear-gradient(45deg, #ff0000, #fa9f3e 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+}
+.image-div {
+    display: flex;
+    justify-content: center;
+    margin: 2%;
+}
+
+.uploaded-image {
+    max-width: 80%;
+    border: 5px solid #555;
+}
+
+
+/* Colors Section  */
+.colors-section p{
+    font-family: 'Pacifico', cursive;
+    background: -webkit-linear-gradient(#be03fc, #e9a6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.color-div {
+    height: 50px;
+    width: 50px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0/14%),0 7px 12px -5px rgb(144 164 174/46%);
+}
+
+.column-div-grad {
+    background: rgb(218,247,247);
+    background: linear-gradient(230deg, rgba(218,247,247,1) 0%, rgba(255,222,151,1) 100%);
+}
+
+.color-description {
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* Filler Section  */
+.filler-div {
+    height: 598px;
+}
+
+/* Footer Section  */
+footer {
+    border-top: 1px solid #ddd;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0/14%),0 7px 12px -5px rgb(144 164 174/46%);
+    width: 100%;
+    background-color: #ffe6a1;
+    text-align: center;
+    padding: 5px;
+    height: 5rem;
+    margin-top: 20px;
+}
+
+.credit {
+    display:block;
+     margin-top: 20px;
 }

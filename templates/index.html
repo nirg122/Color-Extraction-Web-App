@@ -6,79 +6,84 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="/static/assets/css/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Pacifico&family=Ubuntu&display=swap" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
-<body style="background-color: #faffed;">
-<div class="panel panel-default" style="text-align:center;">
-    <div class="panel-heading"><h1><strong>Upload an Image</strong></h1></div>
-    <div class="panel-body">
+<body>
 
-        <!-- Standard Form -->
+<!-- Upload Section -->
+<section class="upload-section">
+<div class="container upload-container">
+    <div class="panel panel-default upload-panel">
+        <div class="headline">Color Extraction Tool</div>
+        <div class="panel-heading"><h2><u>Upload an Image</u></h2></div>
+        <div class="panel-body">
+        </div>
         <h4>Select the file you want to extract colors from</h4>
         <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data" id="js-upload-form">
             <div class="form-inline">
                 <div class="form-group">
-                    <input type="file" name="file" id="js-upload-files">
-                    <button type="submit" value=Upload class="btn btn-sm btn-primary" id="js-upload-submit">Upload Image</button>
+                    <input type="file" name="file" id="js-upload-files" class="btn btn-secondary">
+                    <button type="submit" value=Upload class="btn btn-md btn-primary" id="js-upload-submit">Upload Image</button>
                 </div>
-
             </div>
         </form>
     </div>
 </div>
+</section>
 
+<!--Image Section-->
+<section id="image-section" class="image-section">
 {% if name %}
-<h1 style="margin-left:43%;">Your Image</h1>
-<div style="max-width: 50%; max-length: 50%; margin-left:17%;">
-    <img class="uploaded-image"
-         style="margin: 2px 0 20px 25%; max-width: 80%; max-length: 80%;"
-         src="static/images/upload/{{name}}">
+<div class="container">
+    <span>Your Image</span>
+    <div class="image-div">
+        <img class="uploaded-image" src="static/images/upload/{{name}}">
+    </div>
 </div>
-    <h3 style="margin-left: 37%;">Ordered By Most Used to Least</h3>
-{% for row in colors %}
-<div class="row justify-content-center">
-    {% for color in row %}
+</section>
 
-    <div class="col-lg-4 d-flex justify-content-center mt-5 align-items-stretch">
-        <div class="card" style="width: 18rem;">
-            <div style="background-color:{{ color }}; height: 100px; width: 100px; margin-left: 32%;
-             margin-top: 10%; border-top: 1px solid #ddd;
-    box-shadow: 0 4px 20px 0 rgb(0 0 0/14%),0 7px 12px -5px rgb(144 164 174/46%);"></div>
-            <div style="text-align: center;" class="card-body">
-                <h5 class="card-title">{{hex_color_list_indices.index(color) + 1}}. Color's Hex Code: <span id="hex-{{hex_color_list_indices.index(color)}}">{{color}}</span>
-                </h5>
-                <button class="btn btn-sm btn-primary"
-                        onclick="copyToClipboard('#hex-{{hex_color_list_indices.index(color)}}')">Copy HEX
-                </button>
+
+<!--Colors Section-->
+<section class="colors-section">
+<div class="container">
+    <p>Color Palette</p>
+    <h3>Ordered By Most Used to Least</h3>
+    <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
+        {% for color in colors %}
+        <div class="col">
+            <div class="p-3 border f column-div-grad">
+                <div>
+                    <div class="color-div" style="background-color:{{ color }};"></div>
+                    <div class="color-description">
+                        <h5>{{colors.index(color) + 1}}. Color's Hex Code:<br><span id="hex-{{colors.index(color)}}">{{color}}</span>
+                        </h5>
+                        <button class="btn btn-sm btn-info"
+                                onclick="copyToClipboard('#hex-{{colors.index(color)}}')">Copy HEX
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
+
+        {% endfor %}
     </div>
-
-    {% endfor %}
 </div>
-{% endfor %}
 {% else %}
-<div style="height: 628px;"></div>
+<div class="filler-div"></div>
 {% endif %}
-
+</section>
 </body>
 
-<footer style="
-    border-top: 1px solid #ddd;
-    box-shadow: 0 4px 20px 0 rgb(0 0 0/14%),0 7px 12px -5px rgb(144 164 174/46%);
-    width: 100%;
-    background-color: #ffe6a1;
-    text-align: center;
-    padding: 5px;
-    height: 5rem;
-    margin-top: 20px">
-    <span style="display:block; margin-top: 20px;">
-        <strong>Nir G.©</strong> 2021 All Rights Reserved.
-    </span>
+<footer>
+    <span class="credit"><strong>Nir G.©</strong> 2021 All Rights Reserved.</span>
 </footer>
 <script src="/static/assets/js/main.js"></script>
 
